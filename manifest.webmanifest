@@ -1,0 +1,19 @@
+{
+  "id": "moscow-transit",
+  "name": "Moscow Transit",
+  "short_name": "Transit",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "Личный помощник маршрутов общественного транспорта Москвы",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

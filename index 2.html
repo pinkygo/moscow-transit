@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Moscow Transit">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icon.svg">
+<title>Moscow Transit</title>
+<style>
+:root{color-scheme:dark;--bg:#000;--card:#101012;--line:#29292e;--muted:#8d8d96;--text:#f5f5f7;--accent:#d9d9de}
+*{box-sizing:border-box}html{background:#000;scroll-behavior:smooth}body{margin:0;background:#000;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+main{max-width:620px;margin:auto;padding:env(safe-area-inset-top) 16px calc(32px + env(safe-area-inset-bottom))}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 2px 27px}.brand{display:flex;gap:10px;align-items:center}.logo{height:36px;width:36px;border:1px solid #333;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#1b1b1f,#050505);font-size:17px}.brandname{font-size:11px;font-weight:800;letter-spacing:.16em}.tagline{font-size:10px;color:var(--muted);margin-top:4px}.badge{border:1px solid #303035;border-radius:100px;padding:8px 10px;font-size:10px;color:#bbb;letter-spacing:.08em}
+.kicker{font-size:10px;color:#92929a;letter-spacing:.2em;font-weight:800;margin-bottom:12px}h1{font-size:clamp(35px,8vw,47px);line-height:.99;letter-spacing:-.065em;margin:0;font-weight:730}.hero p{color:var(--muted);font-size:14px;line-height:1.5;margin:14px 0 24px;max-width:390px}
+.card{border:1px solid #252529;border-radius:24px;background:linear-gradient(150deg,#121215,#080809 75%);padding:18px;margin-bottom:13px}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}.label{font-size:10px;letter-spacing:.15em;color:#a4a4ab;font-weight:800}.chip{font-size:10px;color:#c7c7ce;border:1px solid #343439;padding:6px 9px;border-radius:100px}
+.notice{display:flex;gap:10px;padding:11px 12px;border-radius:14px;background:#141416;border:1px solid #252529;margin-bottom:8px;color:#b6b6bd;font-size:11px;line-height:1.45}.notice i{font-style:normal;width:18px;height:18px;flex:none;border:1px solid #3a3a40;border-radius:6px;display:grid;place-items:center}
+.row{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:12px;align-items:center;padding:15px 0;border-bottom:1px solid #242428}.row:last-of-type{border-bottom:0}.icon{height:42px;width:42px;border:1px solid #303035;background:#151518;border-radius:15px;display:grid;place-items:center;font-size:17px}.title{font-size:14px;font-weight:680}.sub{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4}.time{text-align:right;font-size:18px;font-weight:750}.time small{display:block;font-size:10px;color:#8d8d95;font-weight:500;margin-top:3px}
+button,input,select{font:inherit}button{cursor:pointer}.primary,.secondary,.ghost{width:100%;min-height:47px;padding:13px 15px;border-radius:15px;font-size:11px;font-weight:800;letter-spacing:.04em;border:1px solid #343439}.primary{background:#f5f5f7;color:#050505;border-color:#f5f5f7;margin-top:13px}.secondary{background:#151518;color:#f3f3f5;margin-top:8px}.ghost{background:transparent;color:#c6c6cc;margin-top:8px}
+.sectiontitle{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 12px}.sectiontitle h2{font-size:16px;letter-spacing:-.035em;margin:0}.sectiontitle span{font-size:10px;color:var(--muted)}
+.steps{display:flex;gap:12px;margin:15px 0 4px}.track{width:20px;display:flex;flex-direction:column;align-items:center;padding-top:4px}.dot{width:9px;height:9px;border:2px solid #e7e7eb;border-radius:50%;background:#000}.line{width:1px;background:#414147;flex:1;min-height:27px}.end{width:9px;height:9px;border-radius:3px;background:#f4f4f6}.stops{flex:1;min-width:0}.stop{padding:0 0 17px}.stop:last-child{padding-bottom:0}.stop b{font-size:13px;display:block;overflow-wrap:anywhere}.stop span{font-size:11px;color:var(--muted);display:block;margin-top:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{padding:15px;border:1px solid #252529;border-radius:20px;background:#0b0b0d;min-height:112px}.tile .ico{font-size:16px;margin-bottom:13px}.tile b{font-size:13px;display:block;margin-bottom:5px}.tile p{margin:0;font-size:11px;color:var(--muted);line-height:1.45}
+label{display:block;font-size:11px;color:#a6a6ad;margin:13px 0 7px}input,select{width:100%;min-height:45px;background:#050506;color:#f5f5f7;border:1px solid #303035;border-radius:13px;padding:12px 13px;outline:none;font-size:14px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.toast{font-size:11px;color:#d2d2d8;min-height:16px;margin-top:10px;line-height:1.45}.note{font-size:10px;line-height:1.55;color:#777780;margin:14px 3px 0}.footer{text-align:center;color:#55555d;font-size:10px;line-height:1.6;padding:18px 4px 0}
+@media(max-width:380px){main{padding-left:12px;padding-right:12px}.card{padding:15px}.time{font-size:16px}.tile{padding:13px}}
+</style>
+</head>
+<body><main>
+<header><div class="brand"><div class="logo">↗</div><div><div class="brandname">MOSCOW TRANSIT</div><div class="tagline">PERSONAL ROUTE COMPANION</div></div></div><div class="badge">BLACK EDITION</div></header>
+<section class="hero"><div class="kicker">ГОРОД В ТВОЁМ РИТМЕ</div><h1>Меньше ждать.<br>Больше успевать.</h1><p>Твои маршруты, остановки и пересадки — в одном спокойном чёрном интерфейсе.</p></section>
+<section class="card">
+<div class="head"><span class="label">ТРАНСПОРТ РЯДОМ</span><span class="chip">Москва</span></div>
+<div class="notice"><i>i</i><span>Время прибытия автобусов пока не подключено. Не показываем выдуманные минуты. Кнопки ниже открывают актуальный поиск в картах.</span></div>
+<div class="row"><div class="icon">▰</div><div><div class="title" id="busTitle">Автобус · не выбран</div><div class="sub" id="busStop">Укажи остановку в настройках</div></div><div class="time">—<small>нет ETA</small></div></div>
+<div class="row"><div class="icon">Ⓜ</div><div><div class="title">Метро</div><div class="sub" id="metroStop">Укажи станцию в настройках</div></div><div class="time">—<small>нет ETA</small></div></div>
+<div class="row"><div class="icon">↗</div><div><div class="title">До назначения</div><div class="sub" id="summary">Сохрани маршрут ниже</div></div><div class="time">↗<small>карты</small></div></div>
+<button class="primary" id="build">ПОСТРОИТЬ МАРШРУТ В КАРТАХ ↗</button><button class="secondary" id="nearby">НАЙТИ ТРАНСПОРТ РЯДОМ</button><button class="ghost" id="locate">ИСПОЛЬЗОВАТЬ МОЁ МЕСТОПОЛОЖЕНИЕ</button><div class="toast" id="toast" aria-live="polite"></div>
+</section>
+<div class="sectiontitle"><h2>Моя поездка</h2><span>ПРЕДПРОСМОТР</span></div>
+<section class="card"><div class="head"><span class="label">СОХРАНЁННЫЙ МАРШРУТ</span><span class="chip" id="dirChip">Дом → Работа</span></div><div class="steps"><div class="track"><div class="dot"></div><div class="line"></div><div class="dot"></div><div class="line"></div><div class="end"></div></div><div class="stops"><div class="stop"><b id="fromView">Точка отправления</b><span>Начало маршрута</span></div><div class="stop"><b id="stationView">Станция пересадки</b><span>Метро / пересадка — если нужна</span></div><div class="stop"><b id="toView">Пункт назначения</b><span>Конец маршрута</span></div></div></div><button class="secondary" id="reverse">ПОЕХАТЬ В ОБРАТНОМ НАПРАВЛЕНИИ ⇄</button></section>
+<div class="sectiontitle"><h2>Настройки</h2><span>ЛОКАЛЬНО</span></div>
+<section class="card"><div class="head"><span class="label">ИЗБРАННЫЙ МАРШРУТ</span><span class="chip">Личный</span></div>
+<label for="from">Откуда / остановка</label><input id="from" placeholder="Например, метро Сокол">
+<label for="station">Станция метро / пересадка</label><input id="station" placeholder="Например, Таганская">
+<label for="to">Куда</label><input id="to" placeholder="Например, Москва-Сити">
+<div class="formgrid"><div><label for="bus">Автобус</label><input id="bus" placeholder="Например, т123"></div><div><label for="direction">Направление</label><select id="direction"><option value="work">Дом → Работа</option><option value="home">Работа → Дом</option><option value="custom">Другой маршрут</option></select></div></div>
+<button class="primary" id="save">СОХРАНИТЬ МАРШРУТ</button><button class="ghost" id="clear">ОЧИСТИТЬ</button><div class="toast" id="saveToast" aria-live="polite"></div></section>
+<div class="sectiontitle"><h2>Установить</h2><span>ОДИН РАЗ</span></div>
+<section class="card"><div class="label">ДОБАВЬ НА ЭКРАН «ДОМОЙ»</div><p class="sub" style="font-size:12px;line-height:1.6">Открой этот сайт в Safari → «Поделиться» → «На экран Домой» → оставь включённым «Открывать как веб‑приложение» → «Добавить». После этого Moscow Transit будет запускаться с отдельной иконки.</p><p class="note">Это веб-приложение, не системный WidgetKit-виджет. Для настоящего системного виджета нужна нативная сборка iOS.</p></section>
+<div class="footer">MOSCOW TRANSIT · BLACK EDITION<br>Личные маршруты хранятся в браузере этого устройства</div>
+</main>
+<script>
+const $=id=>document.getElementById(id),fields=['from','station','to','bus','direction'];let pos=null;
+function d(){return {from:$('from').value.trim(),station:$('station').value.trim(),to:$('to').value.trim(),bus:$('bus').value.trim(),direction:$('direction').value}}
+function render(x){$('busTitle').textContent='Автобус · '+(x.bus||'не выбран');$('busStop').textContent=x.from||'Укажи остановку в настройках';$('metroStop').textContent=x.station||'Укажи станцию в настройках';$('summary').textContent=x.from&&x.to?x.from+' → '+x.to:(x.to||'Сохрани маршрут ниже');$('fromView').textContent=x.from||'Точка отправления';$('stationView').textContent=x.station||'Станция пересадки';$('toView').textContent=x.to||'Пункт назначения';$('dirChip').textContent=x.direction==='home'?'Работа → Дом':x.direction==='custom'?'Другой маршрут':'Дом → Работа'}
+function save(silent=false){const x=d();try{localStorage.setItem('mt-pwa-route',JSON.stringify(x))}catch(e){}render(x);if(!silent)$('saveToast').textContent='Маршрут сохранён на этом устройстве.';return x}
+function maps(origin,dest){if(!dest){$('toast').textContent='Сначала заполни пункт назначения.';return}const q=origin?origin+' → '+dest:dest;window.open('https://yandex.ru/maps/?text='+encodeURIComponent(q)+'&z=12','_blank','noopener')}
+$('save').onclick=()=>save();$('clear').onclick=()=>{fields.forEach(k=>$(k).value=k==='direction'?'work':'');try{localStorage.removeItem('mt-pwa-route')}catch(e){}render(d());$('saveToast').textContent='Поля очищены.'};
+$('build').onclick=()=>{const x=save(true);maps(x.from,x.to)};
+$('reverse').onclick=()=>{const a=$('from').value;$('from').value=$('to').value;$('to').value=a;$('direction').value=$('direction').value==='home'?'work':'home';const x=save(true);$('saveToast').textContent='Направление изменено.';maps(x.from,x.to)};
+$('nearby').onclick=()=>{const q='остановки общественного транспорта метро Москва';const url=pos?'https://yandex.ru/maps/?ll='+pos.longitude+'%2C'+pos.latitude+'&z=15&text='+encodeURIComponent('общественный транспорт'):'https://yandex.ru/maps/?text='+encodeURIComponent(q)+'&z=12';window.open(url,'_blank','noopener');$('toast').textContent=pos?'Открываю карту рядом с текущим местоположением.':'Открываю поиск общественного транспорта в Москве.'};
+$('locate').onclick=()=>{if(!navigator.geolocation){$('toast').textContent='Геолокация недоступна в этом браузере.';return}$('toast').textContent='Ожидаю разрешение на геолокацию…';navigator.geolocation.getCurrentPosition(p=>{pos={latitude:p.coords.latitude,longitude:p.coords.longitude};$('toast').textContent='Координаты получены для текущей сессии. Открываю карты.';window.open('https://yandex.ru/maps/?ll='+pos.longitude+'%2C'+pos.latitude+'&z=15&text='+encodeURIComponent('общественный транспорт'),'_blank','noopener')},e=>{$('toast').textContent=e.code===1?'Доступ к местоположению не разрешён.':'Не удалось определить местоположение.'},{timeout:10000,maximumAge:60000})};
+try{const x=JSON.parse(localStorage.getItem('mt-pwa-route')||'{}');fields.forEach(k=>{if(x[k]!==undefined)$(k).value=x[k]})}catch(e){}render(d());
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>
